@@ -1,0 +1,26 @@
+:root {
+  --font-size-xs: 1.6rem;
+  --font-size-sm: 1.8rem;
+  --font-size-xl: 3rem;
+}
+
+$border-radius: 10px;
+$border-radius-lg: 20px;
+
+$font-size-sm: 1.8rem;
+$font-size-xl: 3rem;
+
+$color-minor: #bebebe;
+$color-minor-2: #f4f5f5;
+$color-minor-3: #666666;
+$color-accent: #265aff;
+$color-accent-2: #654cff;
+
+$line-height-title: 110%;
+
+$padding-block-section: 6rem;
+$margin-top-title: 6rem;
+
+$gradient-1: linear-gradient(90deg, #66aeff 0%, #3666ff 10%);
+$gradient-2: linear-gradient(to right, #7032ff 0%, #265aff 100%);
+$gradient-3: linear-gradient(to right, #c1a7fd -50%, #7032ff 100%);

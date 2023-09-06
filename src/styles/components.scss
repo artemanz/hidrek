@@ -1,0 +1,50 @@
+@use "vars" as *;
+
+@mixin Content {
+  position: relative;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 1rem;
+}
+
+@mixin ContentFluid {
+  @include Content;
+  max-width: 1920px;
+  padding-inline: 0;
+}
+
+@mixin Button($bg: #fff) {
+  border: none;
+  border-radius: $border-radius;
+  padding: 3rem 8rem;
+  background: $bg;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: normal;
+}
+
+@mixin Heading {
+  font-size: 6.4rem;
+  line-height: $line-height-title;
+  font-weight: bold;
+}
+
+@mixin TextGradient($gradient) {
+  background: $gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin ListItem {
+  &::before {
+    content: "";
+    background: $color-accent-2;
+    font-weight: bold;
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 100%;
+    margin-right: 0.5em;
+  }
+}

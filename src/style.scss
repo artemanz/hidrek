@@ -1,0 +1,717 @@
+@use "@/styles/vars" as *;
+@use "@/styles/components" as *;
+@use "@/styles/fonts";
+@use "@/styles/reset";
+
+:root {
+  font-size: 10px;
+}
+
+body {
+  background-color: #fff;
+  font-family: "Gilroy";
+  font-size: 2rem;
+}
+
+.Main {
+  overflow: hidden;
+}
+
+.Header {
+  position: absolute;
+  width: 100%;
+  align-items: center;
+  z-index: 1;
+
+  &-Logo {
+    height: 4rem;
+  }
+
+  &-Content {
+    @include Content;
+    padding-block: 3rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(#fff, 0.25);
+    align-items: center;
+  }
+
+  &-Button {
+    background-color: transparent;
+    padding: 1.8rem 3rem;
+    color: #fff;
+    border-radius: $border-radius;
+    border: 1px solid rgba(#fff, 0.25);
+    cursor: pointer;
+  }
+}
+
+.Hero {
+  color: #fff;
+  background-color: #000;
+  &-Content {
+    @include Content;
+    min-height: 100vh;
+    padding-top: 13rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &-Image {
+    position: absolute;
+    z-index: 0;
+    left: 40%;
+    top: 0;
+    max-height: 120vh;
+    min-height: 80rem;
+  }
+
+  &-Offer {
+    position: relative;
+    max-width: 72rem;
+  }
+
+  &-Title {
+    font-weight: 700;
+    font-size: 6.2rem;
+    line-height: $line-height-title;
+
+    .accent {
+      color: $color-accent;
+    }
+  }
+
+  &-Subtitle {
+    margin-top: 2.5rem;
+    color: $color-minor;
+    font-size: var(--font-size-sm);
+  }
+
+  &-Button {
+    margin-top: 4rem;
+    @include Button;
+  }
+}
+
+.AboutUs {
+  padding-block: $padding-block-section;
+
+  &-Content {
+    @include Content;
+  }
+
+  &-Title {
+    @include Heading;
+    font-size: 5.4rem;
+    text-align: center;
+
+    .accent {
+      color: $color-accent;
+    }
+  }
+
+  &-Steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    margin-top: $margin-top-title;
+  }
+
+  &-StepsRow {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    &:last-child > .AboutUs-Step {
+      flex-basis: 100%;
+    }
+  }
+
+  &-Arrow {
+    flex-shrink: 0;
+  }
+
+  &-Step {
+    background-color: $color-minor-2;
+    border-radius: $border-radius;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    color: $color-minor-3;
+    padding: 2.4rem;
+    height: 100%;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  &-StepNumber {
+    @include TextGradient($gradient-1);
+    font-size: 5.4rem;
+    font-weight: bold;
+  }
+
+  &-Info {
+    margin-top: 20rem;
+    position: relative;
+  }
+
+  &-InfoText {
+    color: $color-minor-3;
+    margin-top: 4rem;
+    max-width: 46%;
+  }
+
+  &-InfoImage {
+    position: absolute;
+    right: -20rem;
+    z-index: 0;
+  }
+
+  &-Partners {
+    margin-top: 12rem;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.Variants {
+  padding-block: $padding-block-section;
+  &-Content {
+    @include Content;
+  }
+
+  &-Title {
+    @include Heading;
+  }
+
+  &-Grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 5rem;
+  }
+
+  &-Card {
+    border-radius: 20px;
+    background-color: $color-minor-2;
+  }
+
+  &-CardTitle {
+    @include TextGradient($gradient-2);
+    font-weight: bold;
+    font-size: 3rem;
+  }
+
+  &-CardText {
+    margin-top: 1rem;
+  }
+
+  &-CardInfo {
+    padding: 3rem;
+  }
+}
+
+.Calculations {
+  padding-block: $padding-block-section;
+
+  &-Content {
+    @include Content;
+  }
+
+  &-Title {
+    @include Heading;
+  }
+
+  &-Cards {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-Card {
+    flex: 1;
+    border-block: 2px solid $color-minor;
+    padding: 4.5rem;
+    color: $color-minor-3;
+
+    &:first-child,
+    &:last-child {
+      border-inline: 2px solid $color-minor;
+    }
+  }
+
+  &-CardTitle {
+    display: flex;
+    align-items: center;
+    font-size: 6.2rem;
+    @include TextGradient($gradient-3);
+    font-weight: bold;
+
+    .Calculations-Card:last-child & {
+      @include TextGradient(linear-gradient(90.11deg, #654CFF -8.5%, #265AFF 92.68%));
+    }
+  }
+
+  &-Banner {
+    display: flex;
+    padding: 5rem 6rem;
+    background: $color-minor-2;
+    margin-top: 5rem;
+    border-radius: 2rem;
+    gap: 12rem;
+  }
+
+  &-BannerInfoTitle {
+    font-weight: bold;
+    font-size: var(--font-size-xl);
+  }
+  &-BannerInfoRow {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  &-BannerInfoButton {
+    @include Button($gradient-2);
+    color: #fff;
+    flex-shrink: 0;
+  }
+  &-BannerInfoSubtitle {
+    color: $color-minor-3;
+  }
+}
+
+.Benefits {
+  padding-block: $padding-block-section;
+
+  &-Content {
+    @include Content;
+  }
+
+  &-Title {
+    @include Heading;
+  }
+
+  &-Cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(35rem, 1fr);
+    gap: 5rem;
+    margin-top: 5rem;
+  }
+
+  &-Card {
+    position: relative;
+    background: #000;
+    color: #fff;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+  }
+
+  &-CardContent {
+    position: relative;
+    background: linear-gradient(90.14deg, #000 0%, #ffffff00 100%);
+    z-index: 1;
+    height: 100%;
+    color: $color-minor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 3rem;
+  }
+
+  &-CardTitle {
+    font-size: var(--font-size-xl);
+    font-weight: bold;
+    // @include TextGradient($gradient-3);
+
+    .Benefits-Card:nth-child(3n + 1) & {
+      @include TextGradient($gradient-3);
+    }
+    .Benefits-Card:nth-child(2) &,
+    .Benefits-Card:nth-child(3) & {
+      @include TextGradient($gradient-1);
+    }
+  }
+
+  &-CardText {
+    max-width: 32rem;
+  }
+
+  &-CardImg {
+    position: absolute;
+    z-index: 0;
+    right: 0;
+    top: 0;
+  }
+
+  &-InfoCards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12rem;
+  }
+
+  &-InfoCard {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 30%;
+    gap: 1rem;
+  }
+
+  &-InfoCardImage {
+    max-height: 16.5rem;
+  }
+
+  &-InfoCardTitle {
+    margin-top: 1rem;
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+  }
+
+  &-InfoCardText {
+    font-size: var(--font-size-xs);
+  }
+}
+
+.System {
+  padding-block: $padding-block-section;
+
+  &-Content {
+    @include Content;
+  }
+
+  &-Title {
+    @include Heading;
+  }
+
+  &-Subtitle {
+    font-weight: 500;
+    margin-top: 3rem;
+  }
+
+  &-InfoCards {
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem 8rem;
+  }
+
+  &-InfoCard {
+    display: flex;
+    gap: 2.4rem;
+    align-items: center;
+    color: $color-minor-3;
+  }
+
+  &-InfoCardIcon {
+    flex-shrink: 0;
+  }
+
+  &-Banner {
+    position: relative;
+    background-color: #000;
+    color: #fff;
+    border-radius: $border-radius-lg;
+    padding: 6rem;
+    min-height: 25rem;
+    margin-top: 6rem;
+  }
+
+  &-BannerImage {
+    position: absolute;
+    right: 3rem;
+    bottom: 0;
+  }
+
+  &-BannerTitle {
+    font-weight: bold;
+    font-size: var(--font-size-xl);
+  }
+
+  &-BannerText {
+    max-width: 58rem;
+    color: $color-minor;
+    margin-top: 1.5rem;
+  }
+}
+
+.Catalog {
+  padding-block: $padding-block-section;
+
+  &-Content {
+    @include Content;
+  }
+
+  &-Title {
+    @include Heading;
+  }
+
+  &-Grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 5rem;
+
+    [data-column="double"] {
+      grid-column: span 2;
+      max-height: 46rem;
+    }
+  }
+
+  &-Card {
+    height: 62rem;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    position: relative;
+  }
+
+  &-CardImg {
+    position: absolute;
+  }
+
+  &-CardContent {
+    height: 100%;
+    position: relative;
+    background: linear-gradient(
+      1deg,
+      #121212 -8.61%,
+      rgba(18, 18, 18, 0.63) 37.08%,
+      rgba(18, 18, 18, 0) 100.91%
+    );
+    padding: 5rem;
+  }
+
+  &-CardWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    color: #fff;
+    height: 100%;
+    justify-content: flex-end;
+  }
+
+  &-CardWrapperContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+
+    .Catalog-Card[data-column="double"] & {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+
+  &-CardTitle {
+    font-size: var(--font-size-xl);
+    font-weight: bold;
+  }
+
+  &-CardButton {
+    @include Button($gradient-2);
+    color: #fff;
+  }
+}
+
+.Banners {
+  &-Content {
+    @include Content;
+  }
+
+  &-FirstBanner {
+    position: relative;
+    background-color: $color-minor-2;
+    border-radius: $border-radius-lg;
+    padding: 6rem;
+    min-height: 25rem;
+    margin-top: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-FirstBannerContent {
+    max-width: 45rem;
+  }
+
+  &-FirstBannerImage {
+    position: absolute;
+    right: 10%;
+    bottom: 0;
+    z-index: 0;
+  }
+
+  &-FirstBannerTitle {
+    line-height: 110%;
+    font-weight: bold;
+    font-size: var(--font-size-xl);
+  }
+
+  &-FirstBannerText {
+    margin-top: 1.5rem;
+  }
+
+  &-FirstBannerButton {
+    position: relative;
+    z-index: 1;
+    @include Button($gradient-2);
+    color: #fff;
+  }
+
+  &-SecondBanner {
+    margin-top: 5rem;
+    position: relative;
+    background-color: $color-minor-2;
+    border-radius: $border-radius-lg;
+    padding: 6rem;
+    min-height: 44rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &-SecondBannerContent {
+    max-width: 45rem;
+    margin-left: auto;
+  }
+
+  &-SecondBannerTitle {
+    font-weight: bold;
+    font-size: var(--font-size-xl);
+    line-height: 110%;
+  }
+
+  &-SecondBannerList {
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  &-SecondBannerListItem {
+    @include ListItem;
+    color: $color-minor-3;
+    font-weight: 500;
+  }
+
+  &-SecondBannerImage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+  }
+
+  &-ThirdBanner {
+    position: relative;
+    background-color: #000;
+    color: #fff;
+    border-radius: $border-radius-lg;
+    padding: 6rem;
+    min-height: 25rem;
+    margin-top: 6rem;
+    overflow: hidden;
+  }
+
+  &-ThirdBannerImage {
+    position: absolute;
+    right: 3rem;
+    top: 0;
+  }
+
+  &-ThirdBannerTitle {
+    font-weight: bold;
+    font-size: var(--font-size-xl);
+  }
+
+  &-ThirdBannerText {
+    max-width: 58rem;
+    color: $color-minor;
+    margin-top: 1.5rem;
+  }
+}
+
+.CTA {
+  margin-top: 10rem;
+  &-Content {
+    @include ContentFluid;
+    display: flex;
+    align-items: center;
+  }
+
+  &-Img {
+    max-width: 50%;
+  }
+
+  &-Info {
+    padding: 10rem;
+    max-width: 60rem;
+  }
+
+  &-InfoTitle {
+    font-weight: bold;
+    font-size: var(--font-size-xl);
+    line-height: 110%;
+  }
+
+  &-InfoSubtitle {
+    color: $color-minor-3;
+    margin-top: 2rem;
+  }
+
+  &-InfoButton {
+    @include Button($gradient-2);
+    color: #fff;
+    margin-top: 3rem;
+  }
+}
+
+.Footer {
+  background-color: #000;
+  padding: 8rem;
+
+  &-Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4.5rem;
+  }
+
+  &-Info {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  &-InfoContacts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &-InfoContactsTel {
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    font-size: var(--font-size-xl);
+  }
+
+  &-InfoContactsFeedback {
+    background-color: transparent;
+    color: $color-minor;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  &-Socials {
+    display: flex;
+    gap: 2rem;
+  }
+}
