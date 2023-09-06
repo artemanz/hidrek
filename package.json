@@ -1,5 +1,5 @@
 {
-  "name": "HIDREK",
+  "name": "hydrack",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,7 @@
     "assets:build": "gulp build",
     "dev": "vite",
     "preview": "vite preview",
-    "build": "gulp build && tsc && vite build"
+    "build": "tsc && vite build"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
