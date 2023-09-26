@@ -24,3 +24,6 @@ $margin-top-title: 6rem;
 $gradient-1: linear-gradient(90deg, #66aeff 0%, #3666ff 10%);
 $gradient-2: linear-gradient(to right, #7032ff 0%, #265aff 100%);
 $gradient-3: linear-gradient(to right, #c1a7fd -50%, #7032ff 100%);
+
+$mobile: "width <= 768px";
+$laptop: "width <= 1024px";

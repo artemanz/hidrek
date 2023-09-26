@@ -5,16 +5,22 @@
 
 :root {
   font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 body {
   background-color: #fff;
   font-family: "Gilroy";
   font-size: 2rem;
-}
+  overflow-x: hidden;
 
-.Main {
-  overflow: hidden;
+  @media ($mobile) {
+    font-size: 1.8rem;
+  }
 }
 
 .Header {
@@ -25,6 +31,10 @@ body {
 
   &-Logo {
     height: 4rem;
+
+    @media ($mobile) {
+      height: 2.8rem;
+    }
   }
 
   &-Content {
@@ -36,6 +46,26 @@ body {
     align-items: center;
   }
 
+  &-Nav {
+    @media ($laptop) {
+      display: none;
+    }
+  }
+
+  &-NavList {
+    display: flex;
+    gap: 2rem;
+
+    a {
+      color: $color-minor;
+      text-decoration: none;
+      transition: color 300ms ease;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
   &-Button {
     background-color: transparent;
     padding: 1.8rem 3rem;
@@ -43,18 +73,117 @@ body {
     border-radius: $border-radius;
     border: 1px solid rgba(#fff, 0.25);
     cursor: pointer;
+    transition: 300ms ease-in background-color;
+
+    &:hover {
+      background: $color-accent;
+    }
+
+    @media ($laptop) {
+      display: none;
+    }
+  }
+
+  &-Burger {
+    display: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    @media ($laptop) {
+      display: block;
+    }
+  }
+
+  &-MobileMenu {
+    z-index: 2;
+    position: fixed;
+    inset: 0;
+
+    &[aria-hidden="true"] {
+      visibility: hidden;
+    }
+
+    &[aria-hidden="false"] {
+      visibility: visible;
+      .Header-MobileMenuContainer {
+        translate: 0;
+      }
+    }
+  }
+
+  &-MobileMenuBackdrop {
+    position: fixed;
+    inset: 0;
+    background-color: #000000cc;
+  }
+  &-MobileMenuContainer {
+    position: fixed;
+    width: 70%;
+    background-color: #000;
+    height: 100%;
+    right: 0;
+    padding: 1rem;
+    transition: translate 300ms ease;
+    translate: 100% 0;
+  }
+
+  &-MobileMenuContent {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    flex-direction: column;
+    gap: 8rem;
+  }
+
+  &-MobileMenuNavList {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    text-align: right;
+
+    a {
+      color: $color-minor;
+      text-decoration: none;
+    }
+  }
+  &-MobileMenuClose {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 4rem;
+    cursor: pointer;
+  }
+
+  &-MobileMenuButton {
+    background-color: transparent;
+    padding: 1.8rem 3rem;
+    color: #fff;
+    border-radius: $border-radius;
+    border: 1px solid rgba(#fff, 0.25);
+    cursor: pointer;
+    transition: 300ms ease-in background-color;
+
+    &:hover {
+      background: $color-accent;
+    }
   }
 }
 
 .Hero {
   color: #fff;
   background-color: #000;
+
   &-Content {
     @include Content;
     min-height: 100vh;
-    padding-top: 13rem;
+    padding-block: 13rem 7rem;
     display: flex;
     align-items: center;
+    position: relative;
   }
 
   &-Image {
@@ -64,11 +193,31 @@ body {
     top: 0;
     max-height: 120vh;
     min-height: 80rem;
+
+    @media ($mobile) {
+      display: none;
+    }
+  }
+  &-MobileImage {
+    display: none;
+    position: absolute;
+    top: 5%;
+
+    @media ($mobile) {
+      display: block;
+    }
   }
 
   &-Offer {
     position: relative;
     max-width: 72rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media ($mobile) {
+      align-items: center;
+    }
   }
 
   &-Title {
@@ -79,17 +228,34 @@ body {
     .accent {
       color: $color-accent;
     }
+
+    @media ($mobile) {
+      font-size: 3.5rem;
+      text-align: center;
+      margin-top: 25rem;
+    }
   }
 
   &-Subtitle {
     margin-top: 2.5rem;
     color: $color-minor;
     font-size: var(--font-size-sm);
+    @media ($mobile) {
+      text-align: center;
+    }
   }
 
   &-Button {
     margin-top: 4rem;
     @include Button;
+
+    &:hover {
+      background: $color-accent;
+    }
+
+    @media ($mobile) {
+      margin-inline: auto;
+    }
   }
 }
 
@@ -126,10 +292,19 @@ body {
     &:last-child > .AboutUs-Step {
       flex-basis: 100%;
     }
+
+    @media ($mobile) {
+      flex-direction: column;
+      gap: 1.6rem;
+    }
   }
 
   &-Arrow {
     flex-shrink: 0;
+
+    @media ($mobile) {
+      display: none;
+    }
   }
 
   &-Step {
@@ -145,6 +320,10 @@ body {
     strong {
       font-weight: 600;
     }
+
+    @media ($mobile) {
+      width: 100%;
+    }
   }
 
   &-StepNumber {
@@ -156,24 +335,57 @@ body {
   &-Info {
     margin-top: 20rem;
     position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media ($laptop) {
+      margin-top: 10rem;
+    }
+  }
+
+  &-InfoLogo {
+    @media ($laptop) {
+      align-self: center;
+    }
   }
 
   &-InfoText {
     color: $color-minor-3;
     margin-top: 4rem;
     max-width: 46%;
+
+    @media ($laptop) {
+      max-width: none;
+    }
   }
 
   &-InfoImage {
     position: absolute;
     right: -20rem;
     z-index: 0;
+
+    @media ($laptop) {
+      position: static;
+      order: 1;
+      margin-top: 1rem;
+    }
   }
 
   &-Partners {
     margin-top: 12rem;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 2.8rem;
+
+    @media ($mobile) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-inline: 2rem;
+    }
   }
 }
 
@@ -185,6 +397,10 @@ body {
 
   &-Title {
     @include Heading;
+
+    @media ($mobile) {
+      text-align: center;
+    }
   }
 
   &-Grid {
@@ -192,6 +408,11 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
     margin-top: 5rem;
+
+    @media ($mobile) {
+      grid-template-columns: minmax(auto, 50rem);
+      justify-content: center;
+    }
   }
 
   &-Card {
@@ -223,12 +444,20 @@ body {
 
   &-Title {
     @include Heading;
+    @media ($mobile) {
+      text-align: center;
+    }
   }
 
   &-Cards {
     margin-top: 5rem;
     display: flex;
     justify-content: space-between;
+
+    @media ($laptop) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &-Card {
@@ -241,6 +470,19 @@ body {
     &:last-child {
       border-inline: 2px solid $color-minor;
     }
+
+    @media ($laptop) {
+      border: 2px solid $color-minor;
+      text-align: center;
+      max-width: 50rem;
+
+      &:first-child {
+        border-bottom: none;
+      }
+      &:last-child {
+        border-top: none;
+      }
+    }
   }
 
   &-CardTitle {
@@ -250,29 +492,55 @@ body {
     @include TextGradient($gradient-3);
     font-weight: bold;
 
+    @media ($laptop) {
+      justify-content: center;
+    }
+
     .Calculations-Card:last-child & {
-      @include TextGradient(linear-gradient(90.11deg, #654CFF -8.5%, #265AFF 92.68%));
+      @include TextGradient(
+        linear-gradient(90.11deg, #654cff -8.5%, #265aff 92.68%)
+      );
     }
   }
 
   &-Banner {
+    overflow: hidden;
+    position: relative;
     display: flex;
     padding: 5rem 6rem;
     background: $color-minor-2;
     margin-top: 5rem;
     border-radius: 2rem;
     gap: 12rem;
+    @media ($mobile) {
+      padding: 2rem;
+    }
+  }
+
+  &-BannerInfo {
+    position: relative;
+    z-index: 1;
   }
 
   &-BannerInfoTitle {
     font-weight: bold;
     font-size: var(--font-size-xl);
+    @media ($mobile) {
+      line-height: normal;
+      font-size: 2.2rem;
+      max-width: 25rem;
+    }
   }
   &-BannerInfoRow {
     margin-top: 3rem;
     display: flex;
     align-items: center;
     gap: 3rem;
+
+    @media ($mobile) {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
   }
   &-BannerInfoButton {
     @include Button($gradient-2);
@@ -281,6 +549,23 @@ body {
   }
   &-BannerInfoSubtitle {
     color: $color-minor-3;
+    @media ($mobile) {
+      max-width: 25rem;
+    }
+  }
+
+  &-BannerImage {
+    object-fit: cover;
+    height: 100%;
+
+    @media ($mobile) {
+      position: absolute;
+      right: 0;
+      translate: 40% 0;
+      height: 60%;
+      top: 0;
+      z-index: 0;
+    }
   }
 }
 
@@ -293,6 +578,10 @@ body {
 
   &-Title {
     @include Heading;
+
+    @media ($mobile) {
+      text-align: center;
+    }
   }
 
   &-Cards {
@@ -301,6 +590,10 @@ body {
     grid-auto-rows: minmax(35rem, 1fr);
     gap: 5rem;
     margin-top: 5rem;
+
+    @media ($mobile) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &-Card {
@@ -340,6 +633,10 @@ body {
 
   &-CardText {
     max-width: 32rem;
+
+    @media ($mobile) {
+      max-width: 24rem;
+    }
   }
 
   &-CardImg {
@@ -347,12 +644,26 @@ body {
     z-index: 0;
     right: 0;
     top: 0;
+    @media ($mobile) {
+      transform-origin: right;
+      scale: 0.65;
+
+      .Benefits-Card:last-child & {
+        right: -5rem;
+        rotate: -45deg;
+      }
+    }
   }
 
   &-InfoCards {
     display: flex;
     justify-content: space-between;
     margin-top: 12rem;
+
+    @media ($mobile) {
+      flex-direction: column;
+      gap: 4.2rem;
+    }
   }
 
   &-InfoCard {
@@ -388,11 +699,17 @@ body {
 
   &-Title {
     @include Heading;
+    @media ($mobile) {
+      text-align: center;
+    }
   }
 
   &-Subtitle {
     font-weight: 500;
     margin-top: 3rem;
+    @media ($mobile) {
+      text-align: center;
+    }
   }
 
   &-InfoCards {
@@ -400,6 +717,10 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem 8rem;
+
+    @media ($mobile) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &-InfoCard {
@@ -421,12 +742,22 @@ body {
     padding: 6rem;
     min-height: 25rem;
     margin-top: 6rem;
+    overflow: hidden;
+
+    @media ($mobile) {
+      padding: 3.2rem 2.4rem;
+    }
   }
 
   &-BannerImage {
     position: absolute;
     right: 3rem;
     bottom: 0;
+    object-fit: cover;
+    @media ($mobile) {
+      right: -16rem;
+      height: 100%;
+    }
   }
 
   &-BannerTitle {
@@ -438,6 +769,9 @@ body {
     max-width: 58rem;
     color: $color-minor;
     margin-top: 1.5rem;
+    @media ($mobile) {
+      max-width: 28rem;
+    }
   }
 }
 
@@ -450,6 +784,9 @@ body {
 
   &-Title {
     @include Heading;
+    @media ($mobile) {
+      text-align: center;
+    }
   }
 
   &-Grid {
@@ -462,6 +799,13 @@ body {
       grid-column: span 2;
       max-height: 46rem;
     }
+
+    @media ($mobile) {
+      grid-template-columns: 1fr;
+      [data-column="double"] {
+        grid-column: auto;
+      }
+    }
   }
 
   &-Card {
@@ -469,10 +813,20 @@ body {
     border-radius: $border-radius-lg;
     overflow: hidden;
     position: relative;
+
+    @media ($mobile) {
+      height: 41rem;
+    }
   }
 
   &-CardImg {
     position: absolute;
+    max-height: 150%;
+    .Catalog-Card[data-column="double"] & {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   &-CardContent {
@@ -485,6 +839,10 @@ body {
       rgba(18, 18, 18, 0) 100.91%
     );
     padding: 5rem;
+
+    @media ($mobile) {
+      padding: 2rem;
+    }
   }
 
   &-CardWrapper {
@@ -495,6 +853,10 @@ body {
     color: #fff;
     height: 100%;
     justify-content: flex-end;
+
+    @media ($mobile) {
+      align-items: center;
+    }
   }
 
   &-CardWrapperContent {
@@ -507,12 +869,20 @@ body {
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
+
+      @media ($mobile) {
+        flex-direction: column;
+      }
     }
   }
 
   &-CardTitle {
     font-size: var(--font-size-xl);
     font-weight: bold;
+
+    @media ($mobile) {
+      align-self: center;
+    }
   }
 
   &-CardButton {
@@ -536,6 +906,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    overflow: hidden;
+
+    @media ($mobile) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4rem;
+      padding: 2rem;
+    }
   }
 
   &-FirstBannerContent {
@@ -544,9 +922,14 @@ body {
 
   &-FirstBannerImage {
     position: absolute;
-    right: 10%;
-    bottom: 0;
+    right: 20%;
+    top: -25%;
     z-index: 0;
+    height: 42rem;
+    @media ($mobile) {
+      right: -20%;
+      top: -10%;
+    }
   }
 
   &-FirstBannerTitle {
@@ -575,11 +958,23 @@ body {
     min-height: 44rem;
     display: flex;
     align-items: center;
+    overflow: hidden;
+    @media ($mobile) {
+      align-items: flex-start;
+      padding: 2rem;
+    }
   }
 
   &-SecondBannerContent {
     max-width: 45rem;
     margin-left: auto;
+
+    @media ($mobile) {
+      margin-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18rem;
+    }
   }
 
   &-SecondBannerTitle {
@@ -593,6 +988,10 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
+
+    @media ($mobile) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &-SecondBannerListItem {
@@ -603,9 +1002,23 @@ body {
 
   &-SecondBannerImage {
     position: absolute;
-    left: 0;
-    top: 0;
+    right: 60%;
+    top: 20%;
     z-index: 0;
+    width: 80rem;
+
+    @media ($laptop) {
+      width: 60rem;
+      top: 30%;
+    }
+
+    @media ($mobile) {
+      height: 16rem;
+      object-fit: cover;
+      right: auto;
+      left: 0;
+      top: 26%;
+    }
   }
 
   &-ThirdBanner {
@@ -617,41 +1030,84 @@ body {
     min-height: 25rem;
     margin-top: 6rem;
     overflow: hidden;
+    @media ($mobile) {
+      padding: 2rem;
+    }
   }
 
   &-ThirdBannerImage {
     position: absolute;
-    right: 3rem;
-    top: 0;
+    right: 4rem;
+    top: -4rem;
+    height: 140%;
+    z-index: 0;
+    @media ($mobile) {
+      height: 22rem;
+      rotate: -20deg;
+      right: -4rem;
+      top: auto;
+      bottom: -2rem;
+    }
   }
-
+  &-ThirdBannerContent {
+    position: relative;
+    z-index: 1;
+  }
   &-ThirdBannerTitle {
     font-weight: bold;
     font-size: var(--font-size-xl);
+    @media ($mobile) {
+      font-size: 2.2rem;
+    }
   }
 
   &-ThirdBannerText {
     max-width: 58rem;
     color: $color-minor;
     margin-top: 1.5rem;
+    word-break: break-word;
+    hyphens: auto;
+
+    @media ($mobile) {
+      max-width: 50%;
+    }
   }
 }
 
 .CTA {
   margin-top: 10rem;
   &-Content {
-    @include ContentFluid;
+    @include Content;
     display: flex;
     align-items: center;
+
+    @media ($mobile) {
+      @include ContentFluid;
+      flex-direction: column-reverse;
+    }
   }
 
   &-Img {
     max-width: 50%;
+    border-bottom-right-radius: 60px;
+    @media ($mobile) {
+      max-width: 100%;
+      border-bottom-right-radius: 0;
+      margin-top: 4rem;
+    }
   }
 
   &-Info {
     padding: 10rem;
     max-width: 60rem;
+    flex-shrink: 0;
+    @media ($mobile) {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
   }
 
   &-InfoTitle {
@@ -676,6 +1132,10 @@ body {
   background-color: #000;
   padding: 8rem;
 
+  @media ($mobile) {
+    padding-inline: 2rem;
+  }
+
   &-Content {
     display: flex;
     flex-direction: column;
@@ -687,12 +1147,19 @@ body {
     display: flex;
     align-items: center;
     gap: 4rem;
+    @media ($mobile) {
+      flex-direction: column;
+      text-align: center;
+    }
   }
 
   &-InfoContacts {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    @media ($mobile) {
+      align-items: center;
+    }
   }
 
   &-InfoContactsTel {
@@ -713,5 +1180,99 @@ body {
   &-Socials {
     display: flex;
     gap: 2rem;
+  }
+}
+
+.Popup {
+  z-index: 2;
+  visibility: hidden;
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+
+  &[data-state="visible"] {
+    visibility: visible;
+  }
+
+  &-Backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: black;
+    opacity: 0.8;
+  }
+
+  &-Container {
+    position: relative;
+    padding: 2rem;
+    width: 100%;
+    max-width: 54rem;
+  }
+}
+
+.PopupForm {
+  background-color: white;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  border-radius: 10px;
+
+  margin-inline: auto;
+  translate: 0 10rem;
+  transition: translate 300ms ease;
+
+  .Popup[data-state="visible"] & {
+    translate: 0 0;
+  }
+
+  &-Input {
+    border: none;
+    border-bottom: 1px solid $color-minor;
+    color: $color-minor-3;
+
+    &[data-state="invalid"] {
+      border-color: rgb(209, 77, 77);
+      color: rgb(209, 77, 77);
+
+      &::placeholder {
+        color: rgb(209, 77, 77);
+      }
+    }
+  }
+
+  &-Button {
+    @include Button($color-accent);
+    color: #fff;
+  }
+
+  &-ErrorMessage {
+    color: rgb(209, 77, 77);
+    display: none;
+    &[data-state="visible"] {
+      display: block;
+    }
+  }
+}
+
+.PopupGreetings {
+  background-color: white;
+  padding: 4rem;
+  border-radius: 10px;
+  text-align: center;
+
+  margin-inline: auto;
+  translate: 0 10rem;
+  transition: translate 300ms ease;
+
+  .Popup[data-state="visible"] & {
+    translate: 0 0;
+  }
+
+  span:first-child {
+    display: block;
+    font-weight: bold;
+    font-size: 1.25em;
+    margin-bottom: 2rem;
   }
 }

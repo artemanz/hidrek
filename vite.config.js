@@ -8,6 +8,7 @@ export default defineConfig({
   build: {
     outDir: resolve("dist"),
     emptyOutDir: true,
+    assetsInlineLimit: 0
   },
   server: {
     port: 3000,
