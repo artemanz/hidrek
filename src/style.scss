@@ -184,6 +184,9 @@ body {
     display: flex;
     align-items: center;
     position: relative;
+    @media ($mobile) {
+      align-items: flex-end;
+    }
   }
 
   &-Image {
@@ -201,7 +204,7 @@ body {
   &-MobileImage {
     display: none;
     position: absolute;
-    top: 5%;
+    top: 0;
 
     @media ($mobile) {
       display: block;
@@ -216,6 +219,8 @@ body {
     align-items: flex-start;
 
     @media ($mobile) {
+      max-width: 35rem;
+      margin-inline: auto;
       align-items: center;
     }
   }
@@ -255,6 +260,7 @@ body {
 
     @media ($mobile) {
       margin-inline: auto;
+      width: 100%;
     }
   }
 }
@@ -512,6 +518,7 @@ body {
     margin-top: 5rem;
     border-radius: 2rem;
     gap: 12rem;
+
     @media ($mobile) {
       padding: 2rem;
     }
@@ -520,6 +527,10 @@ body {
   &-BannerInfo {
     position: relative;
     z-index: 1;
+
+    @media ($mobile) {
+      width: 100%;
+    }
   }
 
   &-BannerInfoTitle {
@@ -537,20 +548,25 @@ body {
     align-items: center;
     gap: 3rem;
 
-    @media ($mobile) {
+    @media ($laptop) {
       flex-direction: column-reverse;
       align-items: flex-start;
+      width: 100%;
     }
   }
   &-BannerInfoButton {
     @include Button($gradient-2);
     color: #fff;
     flex-shrink: 0;
+    @media ($mobile) {
+      width: 100%;
+    }
   }
   &-BannerInfoSubtitle {
     color: $color-minor-3;
     @media ($mobile) {
-      max-width: 25rem;
+      font-size: 1.6rem;
+      max-width: 16rem;
     }
   }
 
@@ -700,7 +716,7 @@ body {
   &-Title {
     @include Heading;
     @media ($mobile) {
-      text-align: center;
+      text-align: left;
     }
   }
 
@@ -708,7 +724,7 @@ body {
     font-weight: 500;
     margin-top: 3rem;
     @media ($mobile) {
-      text-align: center;
+      text-align: left;
     }
   }
 
@@ -1043,10 +1059,10 @@ body {
     z-index: 0;
     @media ($mobile) {
       height: 22rem;
-      rotate: -20deg;
-      right: -4rem;
+      rotate: -10deg;
+      right: -6rem;
       top: auto;
-      bottom: -2rem;
+      bottom: -4rem;
     }
   }
   &-ThirdBannerContent {
@@ -1068,8 +1084,17 @@ body {
     word-break: break-word;
     hyphens: auto;
 
+    br {
+      display: none;
+    }
+
     @media ($mobile) {
-      max-width: 50%;
+      min-width: 20rem;
+      max-width: 65%;
+      font-size: 1.6rem;
+      br {
+        display: inline;
+      }
     }
   }
 }
